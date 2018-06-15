@@ -6,6 +6,8 @@ import Ground from '../Ground';
 import CannonBase from '../Cannon';
 import CannonPipe from '../Cannon/CannonPipe';
 import CannonBall from '../Cannon/CannonBall';
+import CurrentScore from '../CurrentScore';
+import {FilterShadow} from "../CurrentScore/Filters";
 
 const Canvas = (props) => {
   const viewBox = [window.innerWidth / -2, 100 - window.innerHeight, window.innerWidth, window.innerHeight];
@@ -17,6 +19,7 @@ const Canvas = (props) => {
       onMouseMove={props.trackMouse}
       viewBox={viewBox}
     >
+      <FilterShadow />
 
       <Sky/>
       <Ground/>
@@ -25,6 +28,8 @@ const Canvas = (props) => {
       <CannonBase/>
 
       <CannonBall position={{x:0, y:-100}}/>
+
+      <CurrentScore score={25} />
     </svg>
   );
 };
