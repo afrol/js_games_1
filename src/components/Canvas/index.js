@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SVG_ELEMENT_ID} from "../../utils/constants";
+import {SVG_ELEMENT_ID} from '../../utils/constants';
 import Sky from '../Sky';
 import Ground from '../Ground';
 import CannonBase from '../Cannon';
 import CannonPipe from '../Cannon/CannonPipe';
+import CannonBall from '../Cannon/CannonBall';
 
 const Canvas = (props) => {
   const viewBox = [window.innerWidth / -2, 100 - window.innerHeight, window.innerWidth, window.innerHeight];
@@ -22,6 +23,8 @@ const Canvas = (props) => {
 
       <CannonPipe rotation={props.angle}/>
       <CannonBase/>
+
+      <CannonBall position={{x:0, y:-100}}/>
     </svg>
   );
 };
