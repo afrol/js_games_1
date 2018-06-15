@@ -22,7 +22,7 @@ FlyingObjectBase.propTypes = {
   position: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default FlyingObjectBase;
