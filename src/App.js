@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {getCanvasPosition} from './utils/formulas';
 import Canvas from './components/Canvas/';
+import {SVG_ELEMENT_ID} from "./utils/constants";
 
 class App extends Component {
   componentDidMount() {
@@ -10,6 +11,15 @@ class App extends Component {
     setInterval(() => {
       self.props.moveObjects(self.canvasMousePosition);
     }, 10);
+
+    window.onresize = () => {
+      const cnv = document.getElementById(SVG_ELEMENT_ID);
+
+      cnv.style.width = `${window.innerWidth}px`;
+      cnv.style.height = `${window.innerHeight}px`;
+    };
+
+    window.onresize();
   }
 
   trackMouse(event) {
