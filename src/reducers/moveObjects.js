@@ -1,17 +1,27 @@
-import {calculateAngle} from '../utils/formulas'
+import {calculateAngle} from '../utils/formulas';
+import createFlyingObjects from './createFlyingObjects';
+import {MAX_FLYING_OBJECTS, CREATE_INTERVAL} from '../utils/constants';
 
-const moveObjects = (state, action) => {
-  if (!action.mousePosition) {
-    return state;
-  }
+export default (state, action) => {
+  const mousePosition = action.mousePosition || {x: 0, y: 0};
 
-  const {x, y} = action.mousePosition;
+  const newState = createFlyingObjects(state);
+
+  const now = (new Date()).getTime();
+
+  const flyingObjects = newState.gameState.flyingObjects.filter(flyingObject => (
+    (now - flyingObject.createdAt) < CREATE_INTERVAL * MAX_FLYING_OBJECTS
+  ));
+
+  const {x, y} = mousePosition;
   const angle = calculateAngle(0, 0, x, y);
 
   return {
-    ...state,
+    ...newState,
+    gameState: {
+      ...newState.gameState,
+      flyingObjects,
+    },
     angle
   };
 };
-
-export default moveObjects;
