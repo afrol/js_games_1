@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {FLYING_OBJECT_SIZE} from '../../utils/constants';
 
 const FlyingObjectBase = (props) => {
   const style = {
@@ -11,8 +12,8 @@ const FlyingObjectBase = (props) => {
     <ellipse
       cx={props.position.x}
       cy={props.position.y}
-      rx="40"
-      ry="10"
+      rx={FLYING_OBJECT_SIZE.x}
+      ry={FLYING_OBJECT_SIZE.y}
       style={style}
     />
   );

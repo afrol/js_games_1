@@ -22,6 +22,7 @@ const Canvas = (props) => {
       id={SVG_ELEMENT_ID}
       preserveAspectRatio="xMaxYMax none"
       onMouseMove={props.trackMouse}
+      onClick={props.shoot}
       viewBox={viewBox}
     >
       <FilterShadow />
@@ -29,10 +30,15 @@ const Canvas = (props) => {
       <Sky/>
       <Ground/>
 
+      {props.gameState.cannonBalls.map(cannonBall => (
+        <CannonBall
+          key={cannonBall.id}
+          position={cannonBall.position}
+        />
+      ))}
+
       <CannonPipe rotation={props.angle}/>
       <CannonBase/>
-
-      <CannonBall position={{x:0, y:-100}}/>
 
       <CurrentScore score={25} />
 
@@ -71,6 +77,7 @@ Canvas.propTypes = {
   }).isRequired,
   trackMouse: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  shoot: PropTypes.func.isRequired,
 };
 
 export default Canvas;
