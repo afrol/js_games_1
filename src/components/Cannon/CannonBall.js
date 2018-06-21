@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {CANNONBALL_DIAMETER} from '../../utils/constants';
 
 const CannonBall = (props) => {
   const style = {
@@ -15,8 +16,8 @@ const CannonBall = (props) => {
       style={style}
       cx={x}
       cy={y}
-      rx="16"
-      ry="16"
+      rx={CANNONBALL_DIAMETER}
+      ry={CANNONBALL_DIAMETER}
     />
   );
 };

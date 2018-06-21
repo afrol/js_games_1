@@ -26,6 +26,10 @@ class App extends Component {
     this.canvasMousePosition = getCanvasPosition(event);
   }
 
+  shoot() {
+    this.props.shoot(this.canvasMousePosition);
+  }
+
   render() {
     return (
       <Canvas
@@ -33,6 +37,7 @@ class App extends Component {
         gameState={this.props.gameState}
         startGame={this.props.startGame}
         trackMouse={event => (this.trackMouse(event))}
+        shoot={event => this.shoot()}
       />
     );
   }
@@ -54,6 +59,7 @@ App.propTypes = {
   }).isRequired,
   moveObjects: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  shoot: PropTypes.func.isRequired,
 };
 
 export default App;
