@@ -21,6 +21,19 @@ export default (state, action) => {
     (now - flyingObject.createdAt) < LIFE_TIME
   ));
 
+  const lostLives = state.gameState.flyingObjects.length > flyingObjects.length;
+  let lives = state.gameState.lives;
+  if (lostLives) {
+    lives--;
+  }
+
+  const started = lives > 0;
+  if (!started) {
+    flyingObjects = [];
+    cannonBalls = [];
+    lives = 3;
+  }
+
   const {x, y} = mousePosition;
   const angle = calculateAngle(0, 0, x, y);
 
@@ -31,12 +44,17 @@ export default (state, action) => {
   cannonBalls = cannonBalls.filter(object => (cannonBallsDestroyed.indexOf(object.id)));
   flyingObjects = flyingObjects.filter(object => (flyingDiscsDestroyed.indexOf(object.id)));
 
+  const score = state.gameState.score + flyingDiscsDestroyed.length;
+
   return {
     ...newState,
     gameState: {
       ...newState.gameState,
       flyingObjects,
       cannonBalls,
+      lives,
+      started,
+      score,
     },
     angle,
   };
