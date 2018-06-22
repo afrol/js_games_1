@@ -9,9 +9,9 @@ import CannonBall from '../Cannon/CannonBall';
 import CurrentScore from '../CurrentScore';
 import {FilterShadow} from '../CurrentScore/Filters';
 import FlyingObject from '../FlyingObject';
-import Heart from "../Heart";
-import StartGame from "../TextHelper/StartGame";
-import Title from "../TextHelper/Title";
+import StartGame from '../TextHelper/StartGame';
+import Title from '../TextHelper/Title';
+import LivesBox from '../Heart/LivesBox';
 
 const Canvas = (props) => {
   const gameHeight = 1200;
@@ -22,7 +22,7 @@ const Canvas = (props) => {
       id={SVG_ELEMENT_ID}
       preserveAspectRatio="xMaxYMax none"
       onMouseMove={props.trackMouse}
-      onClick={props.shoot}
+      onMouseDown={props.shoot}
       viewBox={viewBox}
     >
       <FilterShadow />
@@ -40,9 +40,9 @@ const Canvas = (props) => {
       <CannonPipe rotation={props.angle}/>
       <CannonBase/>
 
-      <CurrentScore score={25} />
+      <CurrentScore score={props.gameState.score} />
 
-      <Heart position={{x: -300, y: 35}}/>
+      <LivesBox lives={props.gameState.lives} />
 
       {!props.gameState.started &&
         <g>

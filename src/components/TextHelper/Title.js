@@ -8,6 +8,11 @@ const Title = () => {
     fill: '#cbca62',
   };
 
+  const aliensStyle = {
+    ...style,
+    fontSize: 76,
+  };
+
   const aliensLineCurve = {
     initialAxis: {
       x: -190,
@@ -59,14 +64,14 @@ const Title = () => {
           d={pathFromBezierCurve(goHomeLineCurve)}
         />
       </defs>
-      <text {...style}>
+      <text {...aliensStyle}>
         <textPath xlinkHref="#AliensPath">
-          U C G
+          Alien bugs
         </textPath>
       </text>
       <text {...style}>
         <textPath xlinkHref="#GoHomePath">
-          goodBuy!
+          goodbye!
         </textPath>
       </text>
     </g>
